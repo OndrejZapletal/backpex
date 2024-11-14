@@ -50,14 +50,14 @@ defmodule Backpex.MixProject do
 
       # phoenix
       {:phoenix, "~> 1.7.6"},
-      {:phoenix_html, "~> 4.1.1"},
+      {:phoenix_html, "~> 4.1"},
       {:phoenix_html_helpers, "~> 1.0"},
-      {:phoenix_live_view, "~> 0.20.0"},
+      {:phoenix_live_view, "~> 1.0.0-rc.7"},
 
       # adapters
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_ecto, "~> 4.5"},
       {:ash, "~> 3.0", optional: true},
       {:ash_postgres, "~> 2.0", optional: true}
     ]

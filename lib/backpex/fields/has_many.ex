@@ -146,11 +146,11 @@ defmodule Backpex.Fields.HasMany do
         <:label align={Backpex.Field.align_label(@field_options, assigns)}>
           <Layout.input_label text={@field_options[:label]} />
         </:label>
-        <div class="dropdown w-full" phx-feedback-for={@form[@name].name}>
+        <div class="dropdown w-full">
           <label
             tabindex="0"
             class={[
-              "input block h-fit w-full p-2 phx-no-feedback:input-bordered phx-no-feedback:bg-transparent",
+              "input block h-fit w-full p-2",
               @errors == [] && "input-bordered bg-transparent",
               @errors != [] && "input-error bg-error/10"
             ]}

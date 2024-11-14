@@ -45,9 +45,10 @@ defmodule Backpex.HTML.Form do
   slot :inner_block
 
   def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    errors = if Phoenix.Component.used_input?(field), do: translate_form_errors(field, assigns.translate_error_fun), else: []
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
-    |> assign(:errors, translate_form_errors(field, assigns.translate_error_fun))
+    |> assign(:errors, errors)
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> input()
@@ -57,7 +58,7 @@ defmodule Backpex.HTML.Form do
     assigns = assign_new(assigns, :checked, fn -> Form.normalize_value("checkbox", assigns.value) end)
 
     ~H"""
-    <div phx-feedback-for={@name} class={@class}>
+    <div ass={@class}>
       <div class="form-control w-full">
         <%= if @label do %>
           <label class="label cursor-pointer">
@@ -109,7 +110,7 @@ defmodule Backpex.HTML.Form do
     assigns = assign_new(assigns, :checked, fn -> Form.normalize_value("checkbox", assigns.value) end)
 
     ~H"""
-    <div phx-feedback-for={@name} class={@class}>
+    <div class={@class}>
       <div class="form-control w-full">
         <%= if @label do %>
           <label class="label cursor-pointer">
@@ -159,7 +160,7 @@ defmodule Backpex.HTML.Form do
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name} class={@class}>
+    <div  class={@class}>
       <div class="form-control">
         <label :if={@label} class="label">
           <span class="label-text"><%= @label %></span>
@@ -185,7 +186,7 @@ defmodule Backpex.HTML.Form do
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name} class={@class}>
+    <div  class={@class}>
       <div class="form-control">
         <label :if={@label} class="label">
           <span class="label-text"><%= @label %></span>
@@ -211,7 +212,7 @@ defmodule Backpex.HTML.Form do
 
   def input(assigns) do
     ~H"""
-    <div phx-feedback-for={@name} class={@class}>
+    <div  class={@class}>
       <div class="form-control">
         <label :if={@label} class="label">
           <span class="label-text"><%= @label %></span>

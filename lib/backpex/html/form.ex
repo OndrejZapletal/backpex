@@ -72,7 +72,7 @@ defmodule Backpex.HTML.Form do
               class={
                 @input_class ||
                   [
-                    "checkbox checkbox-sm phx-no-feedback:checkbox phx-no-feedback:checkbox-primary",
+                    "checkbox checkbox-sm",
                     @errors == [] && "checkbox-primary",
                     @errors != [] && "checkbox-error"
                   ]
@@ -92,7 +92,7 @@ defmodule Backpex.HTML.Form do
             class={
               @input_class ||
                 [
-                  "checkbox checkbox-sm phx-no-feedback:checkbox phx-no-feedback:checkbox-primary",
+                  "checkbox checkbox-sm",
                   @errors == [] && "checkbox-primary",
                   @errors != [] && "checkbox-error"
                 ]
@@ -124,7 +124,7 @@ defmodule Backpex.HTML.Form do
               class={
                 @input_class ||
                   [
-                    "toggle phx-no-feedback:toggle phx-no-feedback:toggle-primary",
+                    "toggle",
                     @errors == [] && "toggle-primary",
                     @errors != [] && "toggle-error"
                   ]
@@ -144,7 +144,7 @@ defmodule Backpex.HTML.Form do
             class={
               @input_class ||
                 [
-                  "toggle phx-no-feedback:toggle phx-no-feedback:toggle-primary",
+                  "toggle",
                   @errors == [] && "toggle-primary",
                   @errors != [] && "toggle-error"
                 ]
@@ -168,7 +168,6 @@ defmodule Backpex.HTML.Form do
         <div class={
           @input_wrapper_class ||
             [
-              "phx-no-feedback:[&>*]:select phx-no-feedback:[&>*]:select-bordered phx-no-feedback:[&>*]:text-base-content",
               @errors == [] && "[&>*]:select [&>*]:select-bordered [&>*]:text-base-content",
               @errors != [] && "[&>*]:select [&>*]:select-error [&>*]:bg-error/10 [&>*]:text-error-content"
             ]
@@ -197,7 +196,7 @@ defmodule Backpex.HTML.Form do
           class={
             @input_class ||
               [
-                "textarea phx-no-feedback:textarea phx-no-feedback:textarea-bordered",
+                "textarea",
                 @errors == [] && "textarea-bordered",
                 @errors != [] && "textarea-error bg-error/10"
               ]
@@ -225,12 +224,15 @@ defmodule Backpex.HTML.Form do
           class={
             @input_class ||
               [
-                "input phx-no-feedback:input phx-no-feedback:input-bordered",
+                "input",
                 @input_class,
                 @errors == [] && "input-bordered",
                 @errors != [] && "input-error bg-error/10"
               ]
           }
+          placeholder={Backpex.Field.placeholder(@field_options, assigns)}
+          phx-debounce={Backpex.Field.debounce(@field_options, assigns)}
+          phx-throttle={Backpex.Field.throttle(@field_options, assigns)}
           {@rest}
         />
       </div>
@@ -248,7 +250,7 @@ defmodule Backpex.HTML.Form do
 
   def error(assigns) do
     ~H"""
-    <p class="text-error mt-1 text-xs italic phx-no-feedback:hidden">
+    <p class="text-error mt-1 text-xs italic">
       <%= render_slot(@inner_block) %>
     </p>
     """

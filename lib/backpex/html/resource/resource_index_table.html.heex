@@ -19,7 +19,7 @@
   x-init="setActionsWidth()"
   x-on:resize.window="setActionsWidth()"
 >
-  <thead class="bg-base-200/50 text-base-content uppercase">
+  <thead class="bg-base-300 text-base-content uppercase">
     <tr>
       <th :if={Enum.any?(index_item_actions(@item_actions))}>
         <input
@@ -53,13 +53,13 @@
         x-bind:style={"hasOverflow ? '#{shadow_sm_left()}' : ''"}
         class="rounded-tr-box absolute right-0 px-0"
       >
-        <div class="bg-base-100">
+        <div class="bg-base-300">
           <.toggle_columns
             socket={@socket}
             active_fields={@active_fields}
             live_resource={@live_resource}
             current_url={@current_url}
-            class="flex justify-end pt-1 pr-4 font-medium bg-base-200/50 normal-case"
+            class="flex justify-end pt-1 pr-4 font-medium bg-base-300 normal-case"
             x_style="'width: ' + actionsWidth + 'px !important'"
           />
         </div>

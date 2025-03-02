@@ -64,7 +64,15 @@ defmodule Backpex.Metrics.Value do
   Performs database select to query the value of the metric
   """
   @impl Backpex.Metric
-  def query(query, select, repo) do
+  def query(query, %{query_modifier: query_modifier, select: select}, repo) do
+    query
+    |> query_modifier.()
+    |> select(^select)
+    |> repo.one()
+  end
+
+  @impl Backpex.Metric
+  def query(query, %{select: select}, repo) do
     query
     |> select(^select)
     |> repo.one()

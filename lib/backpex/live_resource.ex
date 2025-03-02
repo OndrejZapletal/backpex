@@ -564,7 +564,7 @@ defmodule Backpex.LiveResource do
               |> Ecto.Query.exclude(:select)
               |> Ecto.Query.exclude(:preload)
               |> Ecto.Query.exclude(:group_by)
-              |> metric.module.query(metric.select, repo)
+              |> metric.module.query(metric, repo)
 
             {key, Map.put(metric, :data, data)}
 

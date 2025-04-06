@@ -27,7 +27,7 @@
             @live_resource,
             @params,
             :index,
-            Map.merge(@query_options, %{filters_changed: @filters_changed, page: ":page"})
+            merge_query_params(@query_options, @filters_changed, @params)
           )
         )
       }

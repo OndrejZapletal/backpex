@@ -564,7 +564,7 @@ defmodule Backpex.LiveResource do
               |> Ecto.Query.exclude(:select)
               |> Ecto.Query.exclude(:preload)
               |> Ecto.Query.exclude(:group_by)
-              |> metric.module.query(metric.select, repo)
+              |> metric.module.query(metric, repo)
 
             {key, Map.put(metric, :data, data)}
 
@@ -897,13 +897,20 @@ defmodule Backpex.LiveResource do
 
     per_page = String.to_integer(per_page)
 
+    addition_query_options =
+      if Map.has_key?(params, "query_filter_value") do
+        %{per_page: per_page, query_filter_value: params["query_filter_value"]}
+      else
+        %{per_page: per_page}
+      end
+
     to =
       Router.get_path(
         socket,
         socket.assigns.live_resource,
         params,
         :index,
-        Map.merge(query_options, %{per_page: per_page})
+        Map.merge(query_options, addition_query_options)
       )
 
     socket = push_patch(socket, to: to, replace: true)

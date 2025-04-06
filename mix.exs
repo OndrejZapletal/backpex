@@ -57,7 +57,7 @@ defmodule Backpex.MixProject do
       # adapters
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_ecto, "~> 4.5"},
       {:ash, "~> 3.0", optional: true},
       {:ash_postgres, "~> 2.0", optional: true}
     ]

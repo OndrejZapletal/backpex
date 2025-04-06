@@ -478,7 +478,7 @@ defmodule Backpex.HTML.Resource do
     assigns = assign(assigns, :href, pagination_link)
 
     ~H"""
-    <.link href={@href}>
+    <.link patch={@href}>
       <button class={["btn bg-base-100", @class]} aria-label={Backpex.translate("Previous page")}>
         <Backpex.HTML.CoreComponents.icon name="hero-chevron-left" class="h-4 w-4" />
       </button>
@@ -492,7 +492,7 @@ defmodule Backpex.HTML.Resource do
     assigns = assign(assigns, :href, pagination_link)
 
     ~H"""
-    <.link href={@href}>
+    <.link patch={@href}>
       <button class={["btn bg-base-100", @class]} aria-label={Backpex.translate("Next page")}>
         <Backpex.HTML.CoreComponents.icon name="hero-chevron-right" class="h-4 w-4" />
       </button>
